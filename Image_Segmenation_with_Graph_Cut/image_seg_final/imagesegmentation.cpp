@@ -23,7 +23,6 @@
 // our graph class
 class Graph {
 public:
-    //std::map<int,std::map<int,int> > adjacencyList;
     std::unordered_map<int,std::unordered_map<int,int> > adjacencyList;
     void addEdge(int source, int dest, int weight )
     {
@@ -35,7 +34,6 @@ public:
         }
         else
         {
-            //std::map<int,int>& edgeList = adjacencyList.at(source);
             adjacencyList[source].insert(std::pair<int,int>(dest,weight));
         }
     }
@@ -70,8 +68,6 @@ int breadthFirstSearch(Graph& residualGraph, int source, int sink, std::vector<i
         {
             if (reached[edgeWeightPair.first]==false && edgeWeightPair.second > 0)
             {
-                if (print)
-                    std::cout << "neigbouring edge" << edgeWeightPair.first << std::endl;
                 queue.push(edgeWeightPair.first);
                 parent[edgeWeightPair.first] = u;
                 reached[edgeWeightPair.first] = true;
@@ -93,7 +89,7 @@ cv::Mat Ford_Fulkerson (Graph& graph, int source, int sink, int width, int heigh
     prevGraph->adjacencyList = graph.adjacencyList;
     std::vector<bool> reached(graph.adjacencyList.size(),false);
     int u, v, maxFlow=0;
-    //int parent[V];
+    
     std::vector<int> parent(graph.adjacencyList.size());
     // check if there is a path from source to sink
     while (breadthFirstSearch(graph, source, sink, parent,reached, false))
@@ -177,23 +173,15 @@ Graph* createAdiGraph ( int width, int height, int penalty, std::vector<int>& li
             
             if(weight1>threshold)
                 g->addEdge(i,i+1,penalty);
-            //else
-            //   g->addEdge(i,i+1,2);
             
             if(weight2>threshold)
                 g->addEdge(i,i-1,penalty);
-            //else
-            //    g->addEdge(i,i-1,2);
             
             if(weight3>threshold)
                 g->addEdge(i,i+width,penalty);
-            //else
-            //    g->addEdge(i,i+width,2);
             
             if(weight4>threshold)
                 g->addEdge(i,i-width,penalty);
-            //else
-            //    g->addEdge(i,i-width,2);
         }
     }
     
@@ -271,6 +259,8 @@ Graph* createGraph ( int width, int height, int penalty, std::vector<int>& likel
     g->numberOfEdges();
     return g;
 }
+
+
 
 int main(int argc, const char * argv[]) {
     
