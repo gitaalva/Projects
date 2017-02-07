@@ -7,91 +7,6 @@ import java.net.Socket;
 import java.net.ServerSocket;
 import java.util.*;
 
-/*
-public class User extends Thread {
-    // The user socket
-    private static Socket userSocket = null;
-    // The output stream
-    private static PrintStream output_stream = null;
-    // The input stream
-    private static BufferedReader input_stream = null;
-    
-    private static BufferedReader inputLine = null;
-    private static boolean closed = false;
-  
-    public static void main(String[] args) {
-        
-    	if (args.length != 2 )
-    	{
-    		System.out.println("Invalid number of arguments. Please provide IP address  and port number of the server");
-    		System.exit(1);
-    	}
-    	
-        // The default port.
-        int portNumber = Integer.parseInt(args[1]);
-        // The default host.
-        String host = args[0];
-        try
-        {
-        	userSocket = new Socket("127.0.0.1",portNumber);
-	        inputLine = new BufferedReader( new InputStreamReader( System.in) );
-	        output_stream = new PrintStream(userSocket.getOutputStream());
-	        input_stream = new BufferedReader ( new InputStreamReader(userSocket.getInputStream() ));
-        	String userInput;
-        	System.out.print("Client: ");
-        	userInput = inputLine.readLine();
-        	if( userInput != null )
-        	{
-        		output_stream.println(userInput);
-        	}
-        	String ServerResponse = input_stream.readLine();
-        	System.out.println("Server: " + ServerResponse );
-        	
-        } catch (Exception e)
-        {
-        	System.out.println("Exception occured" + e.getMessage() );
-        }
-        finally 
-        {
-        	if ( inputLine != null )
-        	{
-        		try {
-        		inputLine.close();
-        		}
-        		catch (Exception e)
-                {
-                	System.out.println("Exception occured" + e.getMessage() );
-                }
-        		
-        	}
-        	if ( output_stream != null )
-        	{
-        		try
-        		{
-        			output_stream.close();
-        		}
-        		catch (Exception e)
-                {
-                	System.out.println("Exception occured" + e.getMessage() );
-                }
-        	}
-        }
-    }
-}
-*/
-
-import java.io.DataInputStream;
-import java.io.PrintStream;
-import java.io.IOException;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.Socket;
-import java.net.ServerSocket;
-import java.util.*;
-
-// Things to do:
-	// The client thread just does not do anything when the server refuses to accept connection
-	// The client thread should exit when the server refuses to accept connection
 
 public class User extends Thread {
     
@@ -179,7 +94,6 @@ public class User extends Thread {
          * Keep on reading from the socket till we receive “### Bye …” from the
          * server. Once we received that then we want to break and close the connection.
          */
-    	//YOUR CODE
     	 try {
 	         while ( closed == false )
 	         {
@@ -202,10 +116,4 @@ public class User extends Thread {
 	//System.out.println("Exiting thread"); 
      }
 }
-
-
-
-
-
-
 
