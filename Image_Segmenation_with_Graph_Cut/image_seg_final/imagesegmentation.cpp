@@ -74,11 +74,8 @@ int breadthFirstSearch(Graph& residualGraph, int source, int sink, std::vector<i
             }
         }
     }
-    if(reached[sink])
-    {
-        return true;
-    }
-    return false;
+
+    return reached[sink];
 }
 
 
